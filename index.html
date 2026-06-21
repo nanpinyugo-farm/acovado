@@ -598,7 +598,7 @@
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-title">填寫收件資訊</div>
-      <div class="step-desc">填入姓名、電話、Email 與完整收件地址。</div>
+      <div class="step-desc">填入姓名、電話 與完整收件地址。</div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
@@ -753,7 +753,6 @@
     <div class="form-grid">
       <div class="form-group"><label>訂購者姓名<span class="required">*</span></label><input type="text" id="name" placeholder="請輸入真實姓名（宅配使用）"></div>
       <div class="form-group"><label>聯絡電話<span class="required">*</span></label><input type="tel" id="phone" placeholder="手機或家用電話"></div>
-      <div class="form-group full"><label>電子郵件<span class="required">*</span></label><input type="email" id="email" placeholder="訂購確認信將寄至此信箱"></div>
       <div class="form-group full"><label>收件地址<span class="required">*</span></label><input type="text" id="address" placeholder="請填寫完整地址"></div>
       <div class="form-group full"><label>備註（選填）</label><textarea id="note" placeholder="有任何特殊需求或問題，歡迎在此說明"></textarea></div>
     </div>
@@ -835,7 +834,6 @@
   function submitOrder() {
     const name     = document.getElementById('name').value.trim();
     const phone    = document.getElementById('phone').value.trim();
-    const email    = document.getElementById('email').value.trim();
     const address  = document.getElementById('address').value.trim();
     const transfer = document.getElementById('transfer').value.trim();
     const note     = document.getElementById('note').value.trim();
@@ -843,7 +841,6 @@
     if (!Object.values(qtys).some(q => q > 0)) { alert('請至少選擇一項商品'); return; }
     if (!name)     { alert('請填寫訂購者姓名'); return; }
     if (!phone)    { alert('請填寫聯絡電話'); return; }
-    if (!email)    { alert('請填寫電子郵件'); return; }
     if (!address)  { alert('請填寫收件地址'); return; }
     if (!transfer) { alert('請填寫匯款末五碼'); return; }
 
@@ -854,7 +851,7 @@
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzCiX_UX4gXWNkNS5DCLgvf_MvW-7K3JVzvTR1iVaYpAEL0K98jEOq57HMomqREay9PyA/exec';
     const payload = {
       timestamp: new Date().toLocaleString('zh-TW', { timeZone:'Asia/Taipei' }),
-      name, phone, email, address,
+      name, phone, address,
       items: items.join('、'),
       total: 'NT$' + total.toLocaleString(),
       transfer, note, status:'待確認'
